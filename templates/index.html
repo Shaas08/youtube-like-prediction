@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Prediction</title>
+    <link href="static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
+
+    <main style="background-color: lavender;">
+
+        <div class="head"></div>
+        <br>
+        <h1 style="font-weight: 600;text-align: center;font-size:xxx-large">Youtube Video Like Prediction Using Machine Learning</h1>
+
+        <br>
+
+
+        <div id="about">
+            <div class="about poco" data-aos="fade-up">
+                <img src="/static/Images/interactive.png" alt="">
+                <h2>Use</h2>
+                <p>
+                    Predict YouTube video likes using machine learning by training a model on video features like title, description, and view count, then evaluating its accuracy in predicting the number of likes.
+                </p>
+
+            </div>
+            <div class="about dog" data-aos="fade-down">
+                <img src="/static/Images/acc.png" alt="">
+                <h2>Importance</h2>
+                <p>
+                    Identify the most important features for predicting YouTube video likes by analyzing their impact on the model's performance through techniques like feature importance scores or feature selection algorithms.
+                </p>
+            </div>
+            <div class="about parrot" data-aos="fade-up">
+                <img src="/static/Images/secure.png" alt="">
+                <h2>Random Forest</h2>
+                <p>
+                    Utilize Random Forest algorithm for YouTube likes prediction by training an ensemble of decision trees on video features and determining feature importance based on their contribution to the model's performance.                </p>
+            </div>
+        </div>
+
+        <br> 
+        <br>
+        <h1 data-aos="fade-left" style="font-weight: 400;text-align: center;font-size: xxx-large;">Try For Your Video</h1>
+        <br>
+        <form action="{{url_for('predict') }}" method="POST" style="width:70vw;justify-content: center;font-size:large;
+        font-weight: 600;margin: auto;padding:20px;border-radius: 4px;background-color: rgba(241, 219, 190, 0.993); border: 1px solid rgba(255,255,255,0.3);
+             box-shadow: 2px 2px 15px;">
+            <input type="number" name="views" data-aos="fade-left"> &nbsp;&nbsp;&nbsp;&nbsp;Views <br><br>
+
+            <input type="number" name="dislikes" data-aos="fade-left"> &nbsp;&nbsp;&nbsp;&nbsp; Dislikes <br><br>
+
+            <input type="number" name="comment_count" data-aos="fade-left"> &nbsp;&nbsp;&nbsp;&nbsp;Comment count
+            <br><br>
+
+
+            <input type="radio" name="comments_disabled	" value=0 data-aos="fade-up"> Comments Disabled
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="views" value=1 data-aos="fade-up"> Ratings Disable
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="views" value=2 data-aos="fade-up"> Video error removed<br>
+            <input type="radio" name="2" value=3 data-aos="fade-up"> Autos & Vehicles
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="10" value=4 data-aos="fade-up">
+            Music
+            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="15" value=5 data-aos="fade-up"> Pets & Animals<br>
+            <input type="radio" name="17" value=6 data-aos="fade-up"> Sports
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                type="radio" name="19" value=7 data-aos="fade-up"> Travel & Events
+            &nbsp;&nbsp; <input type="radio" name="20" value=8 data-aos="fade-up"> Gaming<br>
+
+            <input type="radio" name="22" value=9 data-aos="fade-up"> People & Blogs
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="23" value=10
+                data-aos="fade-up">
+            Comedy
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                type="radio" name="24" value=11 data-aos="fade-up"> Entertainment<br>
+            <input type="radio" name="25" value=12 data-aos="fade-up"> News & Politics
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="26" value=13
+                data-aos="fade-up">
+            How to & Style
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="27" value=14 data-aos="fade-up"> Education<br>
+            <input type="radio" name="28" value=15 data-aos="fade-up"> Science & Technology
+            &nbsp;<input type="radio" name="29" value=16 data-aos="fade-up"> Nonprofits & Activism
+            <input type="radio" name="43" value=17 data-aos="fade-up"> Shows
+            <br><br>
+            <button class="btn" data-aos="fade-right"><span>Submit</span></button><br><br>
+            <h3>{{prediction_text}}</h3>
+        </form>
+        <br>
+    
+
+    <div style="background-color: lavender;">
+
+        <h2 style="font-weight: 500;text-align: center;"></h2>
+        <br>
+    </div>
+</main>
+    <div class="accordion-bral">
+    <script>
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+
+
+    <script>
+        $(function () {
+            var btn = $(".btn");
+
+            btn.on("click", function () {
+
+                $(this).addClass('btn-progress');
+                setTimeout(function () {
+                    btn.addClass('btn-fill')
+                }, 500);
+
+                setTimeout(function () {
+                    btn.removeClass('btn-fill')
+                }, 4100);
+
+                setTimeout(function () {
+                    btn.addClass('btn-complete')
+                }, 4100);
+
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6190d0416885f60a50bbb702/1fkeqr16d';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
+
+</body>
+
+</html>
